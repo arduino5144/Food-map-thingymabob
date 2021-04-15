@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hello</title>
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+         <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+        
+    <style>
+        #mapid { 
+            height: 98vh;
+        }
+</style>
+    </head>
+    <body>
+         <div id="mapid"></div>
+        <script>
+            var mapdata = {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#7e7e7e",
+        "marker-size": "medium",
+        "marker-symbol": "",
+        "name": "Som Tam",
+        "ingredients": "Papaya",
+        "description": "Very yummy!!!"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.68994140625,
+          16.172472808397515
+        ]
+      }
+    }
+  ]
+}
+            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            {
+            	maxZoom: 19,
+            	attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+            }).addTo(mymap);
+            
+            L.geoJSON(mapdata).addTo(mymap);
+            
+        </script>
+    </body>
+</html>
