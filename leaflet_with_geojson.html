@@ -26,7 +26,12 @@
     <body>
          <div id="mapid"></div>
         <script>
-            
+            function bindPopups(feature, layer) {
+                if (feature.properties) {
+                layer.bindPopup(feature.properties.
+                                popupContent);
+                }
+            }
             
             var mapdata = {
   "type": "FeatureCollection",
