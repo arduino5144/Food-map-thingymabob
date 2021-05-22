@@ -26,45 +26,48 @@
     <body>
          <div id="mapid"></div>
         <script>
-            function bindPopups(feature, layer) {
-                if (feature.properties) {
-                layer.bindPopup(feature.properties.
-                                popupContent);
-                }
-            }
-            
-            var mapdata = {
-  "type": "FeatureCollection",
-  "features": [
-    {
-      "type": "Feature",
-      "properties": {
-        "marker-color": "#7e7e7e",
-        "marker-size": "medium",
-        "marker-symbol": "",
-        "name": "Som Tam",
-        "ingredients": "Papaya",
-        "description": "Very yummy!!!"
-      },
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          99.68994140625,
-          16.172472808397515
-        ]
-      }
+function bindPopups(feature, layer) {
+    if (feature.properties) {
+        popup = "<h1>" + feature.properties.name + "</h1>" + "<p>" + feature.properties.description + "</p>" + "<p>" + feature.properties.ingredients + "</p>";
+//        for ingredient in feature.properties.ingredients {
+//            popup += "<p>" + ingredient + "</p>";
+//        }
+        popup
+        layer.bindPopup();
     }
-  ]
 }
-            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-            {
-            	maxZoom: 19,
-            	attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-            }).addTo(mymap);
-            
-            L.geoJSON(mapdata).addTo(mymap);
-            
+
+var mapdata = {
+    "type": "FeatureCollection",
+    "features": [{
+        "type": "Feature",
+        "properties": {
+            "marker-color": "#7e7e7e",
+            "marker-size": "medium",
+            "marker-symbol": "",
+            "name": "Som Tam",
+//            "ingredients": [
+//                "Papaya",
+//            ]
+            "ingredients": "Papaya"
+            "description": "Very yummy!!!"
+        },
+        "geometry": {
+            "type": "Point",
+            "coordinates": [
+                99.68994140625,
+                16.172472808397515
+            ]
+        }
+    }]
+}
+var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+}).addTo(mymap);
+
+L.geoJSON(mapdata).addTo(mymap);        
         </script>
     </body>
 </html>
